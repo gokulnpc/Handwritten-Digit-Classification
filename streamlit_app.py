@@ -1,6 +1,4 @@
 import streamlit as st
-import pandas as pd
-import joblib
 import cv2
 import keras
 
@@ -31,10 +29,7 @@ if options == 'Prediction': # Prediction page
         img_array = process_image(image)
         prediction = loaded_model.predict(img_array).argmax()
         st.write(f'The predicted digit is: {prediction}')
-        
-        with st.expander("Show more details"):
-            st.write("Details of the prediction:")
-            # st.json(loaded_model.get_params())
+    
             
 elif options == 'Code':
     st.header('Code')
