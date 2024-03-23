@@ -1,12 +1,11 @@
 import streamlit as st
-import cv2
 import keras
 
 loaded_model = keras.models.load_model("mnist_model.keras")
 def process_image(image):
-    img = cv2.imread(image.name)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    img = cv2.resize(img, (28, 28))
+    # with keras
+    img = keras.preprocessing.image.load_img(image, color_mode='grayscale', target_size=(28, 28))
+    img = keras.preprocessing.image.img_to_array(img)
     img = img.reshape(1, 28, 28, 1)
     img = img / 255.0
     return img
